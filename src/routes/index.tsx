@@ -83,6 +83,7 @@ export const ThemeContext = React.createContext<{
 
 function Nav() {
   const { theme, setTheme } = React.useContext(ThemeContext);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
     <header className={`fixed top-0 z-50 w-full backdrop-blur-md border-b transition-colors duration-300 ${
@@ -90,14 +91,19 @@ function Nav() {
     }`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Left Badge */}
-        <div className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-display-blackout transition-all shadow-sm ${
+        <div className={`hidden sm:flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-display-blackout transition-all shadow-sm ${
           theme === "2D" ? "border-border bg-white text-foreground" : "border-slate-800 bg-slate-900 text-slate-200"
         }`}>
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
           Available for New Project
         </div>
 
-        {/* Center Navigation Links */}
+        {/* Brand visual watermark on mobile */}
+        <div className="sm:hidden font-display-blackout text-xs uppercase tracking-wider">
+          /SAKUNI.A
+        </div>
+
+        {/* Center Navigation Links (Desktop) */}
         <nav className="hidden md:flex items-center gap-8 text-xs font-display-blackout tracking-wider text-muted-foreground uppercase">
           <a href="#about" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
             About <span className="text-muted-foreground/60">[2y+]</span>
@@ -108,16 +114,16 @@ function Nav() {
           <a href="#work" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
             Work <span className="text-muted-foreground/60">[3]</span>
           </a>
-          <a href="#contact" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
-            Contact
-          </a>
           <a href="#service" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
             Services
           </a>
+          <a href="#contact" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
+            Contact
+          </a>
         </nav>
 
-        {/* Right Switch & talk CTA */}
-        <div className="flex items-center gap-4">
+        {/* Right Switch & CTAs */}
+        <div className="flex items-center gap-3">
           {/* Custom Theme Switcher Single Circular Button with Icon */}
           <button
             onClick={() => setTheme(theme === "2D" ? "3D" : "2D")}
@@ -135,9 +141,10 @@ function Nav() {
             )}
           </button>
 
+          {/* Desktop CTA */}
           <a
             href="mailto:sakuniakela273@gmail.com"
-            className={`inline-flex items-center gap-1.5 text-xs font-display-blackout uppercase tracking-wider rounded-full px-5 py-2.5 transition-all shadow-sm ${
+            className={`hidden sm:inline-flex items-center gap-1.5 text-xs font-display-blackout uppercase tracking-wider rounded-full px-5 py-2.5 transition-all shadow-sm ${
               theme === "2D" 
                 ? "bg-foreground text-background hover:bg-zinc-800" 
                 : "bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:opacity-90 shadow-md shadow-indigo-500/20"
@@ -145,6 +152,88 @@ function Nav() {
           >
             Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
+
+          {/* Mobile hamburger menu toggle */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`md:hidden p-2.5 rounded-full border flex items-center justify-center transition-all cursor-pointer shadow-sm ${
+              theme === "2D" 
+                ? "border-border bg-white text-foreground hover:bg-zinc-50" 
+                : "border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800 hover:text-white"
+            }`}
+            aria-label="Toggle mobile menu"
+          >
+            {isMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile navigation links panel */}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t ${
+        isMenuOpen ? "max-h-[350px] opacity-100 py-6" : "max-h-0 opacity-0 pointer-events-none"
+      } ${
+        theme === "2D" 
+          ? "border-border bg-white text-foreground" 
+          : "border-slate-900 bg-slate-950 text-slate-100"
+      }`}>
+        <div className="flex flex-col gap-5 px-6 text-xs font-display-blackout uppercase tracking-widest">
+          <a 
+            href="#about" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            About <span className="text-muted-foreground/60">[2y+]</span>
+          </a>
+          <a 
+            href="#skills" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            Skills <span className="text-muted-foreground/60">[6]</span>
+          </a>
+          <a 
+            href="#work" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            Work <span className="text-muted-foreground/60">[3]</span>
+          </a>
+          <a 
+            href="#service" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            Services
+          </a>
+          <a 
+            href="#contact" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            Contact
+          </a>
+
+          {/* Mobile Talk CTA inside menu dropdown */}
+          <div className="pt-2">
+            <a
+              href="mailto:sakuniakela273@gmail.com"
+              className={`inline-flex w-full justify-center items-center gap-1.5 text-center text-xs font-display-blackout uppercase tracking-wider rounded-full px-5 py-3 transition-all shadow-sm ${
+                theme === "2D" 
+                  ? "bg-foreground text-background hover:bg-zinc-800" 
+                  : "bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:opacity-90 shadow-md shadow-indigo-500/20"
+              }`}
+            >
+              Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
       </div>
     </header>
@@ -175,7 +264,7 @@ function Hero() {
       <div className="relative w-full max-w-6xl px-6 flex flex-col justify-end flex-grow mt-2">
         {/* Huge Center Name Header (Background Layer) */}
         <div 
-          className="absolute inset-x-0 top-[9%] z-0 select-none pointer-events-none text-center transition-transform duration-75 ease-out"
+          className="hidden md:block absolute inset-x-0 top-[9%] z-0 select-none pointer-events-none text-center transition-transform duration-75 ease-out"
           style={{ transform: `translateY(${scrollY * 0.2}px)` }}
         >
           <h1 className="text-[clamp(2.2rem,7.2vw,5.8rem)] tracking-wider leading-none flex justify-center gap-x-4 whitespace-nowrap">
@@ -814,18 +903,18 @@ function SkillsSection() {
                 key={skill.name}
                 className={`flex flex-col justify-between aspect-square transition-all duration-300 relative group ${rotationClass} ${
                   theme === "2D"
-                    ? "bg-white border-2 border-foreground rounded-2xl p-5 shadow-[4px_4px_0px_rgba(9,9,11,1)] hover:shadow-[6px_6px_0px_rgba(9,9,11,1)] hover:-translate-y-1 text-foreground"
-                    : "bg-slate-900/30 border border-slate-800/80 rounded-2xl p-5 shadow-xl backdrop-blur-md hover:border-slate-700 hover:-translate-y-1 text-slate-100"
+                    ? "bg-white border-2 border-foreground rounded-2xl p-4 sm:p-5 shadow-[4px_4px_0px_rgba(9,9,11,1)] hover:shadow-[6px_6px_0px_rgba(9,9,11,1)] hover:-translate-y-1 text-foreground"
+                    : "bg-slate-900/30 border border-slate-800/80 rounded-2xl p-4 sm:p-5 shadow-xl backdrop-blur-md hover:border-slate-700 hover:-translate-y-1 text-slate-100"
                 }`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="text-xs font-display-blackout tracking-wide uppercase leading-snug">
+                <div className="relative pr-6">
+                  <div className="text-[10px] sm:text-xs font-display-blackout tracking-wide uppercase leading-tight break-words">
                     {skill.name}
                   </div>
                   <img
                     src={`https://cdn.jsdelivr.net/npm/simple-icons@11.12.0/icons/${skill.slug}.svg`}
                     alt={skill.name}
-                    className={`h-4.5 w-4.5 object-contain shrink-0 transition-all ${
+                    className={`absolute top-0.5 right-0 h-4 w-4 sm:h-4.5 sm:w-4.5 object-contain shrink-0 transition-all ${
                       theme === "2D" 
                         ? "brightness-0 opacity-80" 
                         : "brightness-0 invert opacity-75 group-hover:opacity-100"
