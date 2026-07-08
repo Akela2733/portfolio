@@ -1,0 +1,402 @@
+@font-face {
+  font-family: "KG Summer Sunshine";
+  src: url("./assets/kg_summer_sunshine/KGSummerSunshine.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "KG Summer Sunshine Blackout";
+  src: url("./assets/kg_summer_sunshine/KGSummerSunshineBlackout.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "KG Summer Sunshine", sans-serif;
+  --font-display-blackout: "KG Summer Sunshine Blackout", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #f4f4f5;
+  --foreground: #09090b;
+  --surface: #ffffff;
+  --surface-elevated: #e4e4e7;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #09090b;
+  --primary-foreground: #ffffff;
+  --secondary: #e4e4e7;
+  --secondary-foreground: #09090b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #18181b;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Orbiting Tech Stack styles */
+.orbit-wrapper {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.orbit-center {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #d8b4fe 30%, #a855f7 65%, #3b82f6 100%);
+  z-index: 10;
+  box-shadow:
+    0 0 30px 10px rgba(255, 255, 255, 0.8),
+    0 0 60px 20px rgba(168, 85, 247, 0.6),
+    0 0 100px 30px rgba(59, 130, 246, 0.4);
+  animation: pulse-ring 4s ease-in-out infinite;
+}
+
+.orbit-nebula {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(59, 130, 246, 0.12) 45%, transparent 75%);
+  filter: blur(45px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orbit-ring {
+  position: absolute;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.04);
+}
+
+.orbit-ring-1 {
+  width: 210px;
+  height: 210px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateX(72deg) rotateY(12deg);
+}
+
+.orbit-ring-2 {
+  width: 310px;
+  height: 310px;
+  left: 48%;
+  top: 52%;
+  transform: translate(-50%, -50%) rotateX(70deg) rotateY(-16deg);
+}
+
+.orbit-ring-3 {
+  width: 410px;
+  height: 410px;
+  left: 52%;
+  top: 48%;
+  transform: translate(-50%, -50%) rotateX(74deg) rotateY(8deg);
+}
+
+/* Rotating tracks */
+.orbit-track {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.orbit-track-cw-1 {
+  animation: spin-cw 18s linear infinite;
+}
+
+.orbit-track-ccw-2 {
+  animation: spin-ccw 28s linear infinite;
+}
+
+.orbit-track-cw-3 {
+  animation: spin-cw 38s linear infinite;
+}
+
+.orbit-item-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+/* Offset positioning along the ring (translate outward by radius) */
+/* Ring 1 (Radius: 105px) */
+.orbit-ring-1 .pos-0 {
+  transform: translate(-50%, -50%) rotate(0deg) translate(105px) rotate(0deg);
+}
+
+.orbit-ring-1 .pos-90 {
+  transform: translate(-50%, -50%) rotate(90deg) translate(105px) rotate(-90deg);
+}
+
+.orbit-ring-1 .pos-180 {
+  transform: translate(-50%, -50%) rotate(180deg) translate(105px) rotate(-180deg);
+}
+
+.orbit-ring-1 .pos-270 {
+  transform: translate(-50%, -50%) rotate(270deg) translate(105px) rotate(-270deg);
+}
+
+/* Ring 2 (Radius: 155px) */
+.orbit-ring-2 .pos-0 {
+  transform: translate(-50%, -50%) rotate(0deg) translate(155px) rotate(0deg);
+}
+
+.orbit-ring-2 .pos-90 {
+  transform: translate(-50%, -50%) rotate(90deg) translate(155px) rotate(-90deg);
+}
+
+.orbit-ring-2 .pos-180 {
+  transform: translate(-50%, -50%) rotate(180deg) translate(155px) rotate(-180deg);
+}
+
+.orbit-ring-2 .pos-270 {
+  transform: translate(-50%, -50%) rotate(270deg) translate(155px) rotate(-270deg);
+}
+
+/* Ring 3 (Radius: 205px) */
+.orbit-ring-3 .pos-0 {
+  transform: translate(-50%, -50%) rotate(0deg) translate(205px) rotate(0deg);
+}
+
+.orbit-ring-3 .pos-90 {
+  transform: translate(-50%, -50%) rotate(90deg) translate(205px) rotate(-90deg);
+}
+
+.orbit-ring-3 .pos-180 {
+  transform: translate(-50%, -50%) rotate(180deg) translate(205px) rotate(-180deg);
+}
+
+.orbit-ring-3 .pos-270 {
+  transform: translate(-50%, -50%) rotate(270deg) translate(205px) rotate(-270deg);
+}
+
+/* Orbit items style */
+.orbit-item {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--color-surface-elevated);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-foreground);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* Twinkling star animation */
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.15;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Rotate items back to stay upright and face the screen */
+.orbit-track-cw-1 .orbit-item {
+  animation: counter-spin-cw-1 18s linear infinite;
+}
+
+.orbit-track-ccw-2 .orbit-item {
+  animation: counter-spin-ccw-2 28s linear infinite;
+}
+
+.orbit-track-cw-3 .orbit-item {
+  animation: counter-spin-cw-3 38s linear infinite;
+}
+
+.orbit-item:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 15px oklch(from var(--color-accent) l c h / 0.3);
+  transform: scale(1.2);
+}
+
+@keyframes spin-cw {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Counter-spin animations combined with the ring's skew to face screen */
+@keyframes counter-spin-cw-1 {
+  from {
+    transform: rotate(0deg) rotateY(-15deg) rotateX(-65deg);
+  }
+
+  to {
+    transform: rotate(-360deg) rotateY(-15deg) rotateX(-65deg);
+  }
+}
+
+@keyframes counter-spin-ccw-2 {
+  from {
+    transform: rotate(-360deg) rotateY(20deg) rotateX(-55deg);
+  }
+
+  to {
+    transform: rotate(0deg) rotateY(20deg) rotateX(-55deg);
+  }
+}
+
+@keyframes counter-spin-cw-3 {
+  from {
+    transform: rotate(0deg) rotateY(-5deg) rotateX(-70deg);
+  }
+
+  to {
+    transform: rotate(-360deg) rotateY(-5deg) rotateX(-70deg);
+  }
+}
+
+@keyframes pulse-ring {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* Infinite Marquee Animation */
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom Skill Bar Hover Animation */
+.skill-progress-bar {
+  width: var(--skill-level);
+  transition: width 0.3s ease;
+}
+
+.group:hover .skill-progress-bar {
+  animation: hover-fill 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hover-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--skill-level);
+  }
+}
