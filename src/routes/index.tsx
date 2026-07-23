@@ -6,11 +6,13 @@ import bloomcareMockup from "@/assets/bloomcare-mockup.png";
 import fragwaterMockup from "@/assets/fragwater-mockup.png";
 import ecosphereCollage from "@/assets/ecosphere-collage.png";
 import ServicesSection from "@/components/services";
+// import ContentCreationSection from "@/components/content-creation";
 import ecosphere1 from "@/assets/ecosphere-1.png";
 import ecosphere2 from "@/assets/ecosphere-2.png";
 import ecosphere3 from "@/assets/ecosphere-3.png";
 import liyoCollage from "@/assets/liyo-collage.png";
 import byowCollage from "@/assets/byow-collage.png";
+import velvetCover from "@/assets/velvet & bars cover.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -112,11 +114,14 @@ function Nav() {
             Skills <span className="text-muted-foreground/60">[6]</span>
           </a>
           <a href="#work" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
-            Work <span className="text-muted-foreground/60">[3]</span>
+            Work <span className="text-muted-foreground/60">[4]</span>
           </a>
           <a href="#service" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
             Services
           </a>
+          {/* <a href="#creative" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
+            Creative
+          </a> */}
           <a href="#contact" className={`hover:text-foreground transition-colors ${theme === "3D" ? "hover:text-white" : ""}`}>
             Contact
           </a>
@@ -204,7 +209,7 @@ function Nav() {
             onClick={() => setIsMenuOpen(false)}
             className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
           >
-            Work <span className="text-muted-foreground/60">[3]</span>
+            Work <span className="text-muted-foreground/60">[4]</span>
           </a>
           <a 
             href="#service" 
@@ -213,6 +218,13 @@ function Nav() {
           >
             Services
           </a>
+          {/* <a 
+            href="#creative" 
+            onClick={() => setIsMenuOpen(false)}
+            className={`transition-colors py-1.5 ${theme === "3D" ? "hover:text-[#8b5cf6]" : "hover:text-zinc-500"}`}
+          >
+            Creative
+          </a> */}
           <a 
             href="#contact" 
             onClick={() => setIsMenuOpen(false)}
@@ -403,6 +415,19 @@ const projects = [
     images: [byowCollage],
     liveUrl: "https://byow.lk/",
     gitUrl: "https://github.com/codezelat/byow-static-site.git",
+  },
+  {
+    id: 4,
+    title: "Velvet & Brass - Artisanal Espresso Bar",
+    category: "Real Project",
+    summary:
+      "A luxury coffee shop web platform featuring online ordering, custom drink builders, and real-time extraction tracking for premium artisanal espresso experiences.",
+    year: "2025",
+    role: "Full-Stack Developer",
+    tags: ["React", "Tailwind CSS", "Vercel"],
+    images: [velvetCover],
+    liveUrl: "https://velvet-brass-espresso-bar.vercel.app/",
+    gitUrl: "https://github.com/Akela2733/Velvet---Brass-Espresso-Bar.git",
   },
 ];
 
@@ -1116,6 +1141,9 @@ function Portfolio() {
         <ScrollReveal>
           <ServicesSection />
         </ScrollReveal>
+        {/* <ScrollReveal>
+          <ContentCreationSection theme={theme} />
+        </ScrollReveal> */}
         <ScrollReveal>
           <Experience />
         </ScrollReveal>
