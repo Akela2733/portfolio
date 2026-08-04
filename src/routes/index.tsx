@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Linkedin, Mail, Sparkles, PenTool } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
+const heroPortrait = "/profile-removebg-preview.png";
 import bloomcareMockup from "@/assets/bloomcare-mockup.png";
 import fragwaterMockup from "@/assets/fragwater-mockup.png";
 import ecosphereCollage from "@/assets/ecosphere-collage.png";
@@ -1013,112 +1013,108 @@ function Footer() {
   const { theme } = React.useContext(ThemeContext);
 
   return (
-    <footer id="contact" className={`py-24 border-t relative overflow-hidden flex flex-col items-center text-center transition-colors duration-300 ${
+    <footer id="contact" className={`relative overflow-hidden border-t transition-colors duration-300 ${
       theme === "2D" ? "bg-white border-border/40 text-foreground" : "bg-slate-950 border-slate-900 text-slate-100"
     }`}>
-      {/* Background Subtle Cloud-like Soft Gradients */}
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-50 z-0 transition-colors ${
-        theme === "2D" ? "bg-zinc-100" : "bg-violet-900/10"
-      }`} />
 
-      <div className="mx-auto max-w-4xl px-6 relative z-10 flex flex-col items-center">
-        {/* Availability Status Badge */}
-        <div className={`inline-flex items-center gap-2 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider shadow-sm mb-8 transition-all ${
-          theme === "2D"
-            ? "border-border bg-white text-foreground"
-            : "border-slate-800 bg-slate-900 text-slate-200"
-        }`}>
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          Available for New Project
-        </div>
+      {/* Main content */}
+      <div className="mx-auto max-w-4xl px-6 py-24 flex flex-col items-center text-center">
 
-        {/* Call to Action Title */}
-        <h2 className="font-display-blackout text-[clamp(1.8rem,5vw,3.5rem)] leading-none uppercase tracking-wide mb-4 max-w-2xl">
-          HAVE A PROJECT IN MIND?
-        </h2>
-
-        {/* Description */}
-        <p className="font-sans text-xs md:text-sm text-muted-foreground leading-relaxed max-w-md mb-8">
-          Together, we can create something clear and impactful. Let's collaborate to bring our ideas to life in a way that resonates with everyone.
-        </p>
-
-        {/* Primary Contact CTA Button */}
-        <a
-          href="mailto:sakuniakela273@gmail.com"
-          className={`inline-flex items-center gap-1.5 px-6 py-3.5 font-display-blackout text-xs uppercase tracking-wider rounded-full transition-all shadow-md mb-16 ${
-            theme === "2D"
-              ? "bg-foreground text-background hover:bg-zinc-800"
-              : "bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:opacity-90 shadow-lg shadow-indigo-500/25"
-          }`}
-        >
-          Contact Me <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
-
-        {/* Social Badges Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 w-full">
-          {/* Avatar Name Badge */}
-          <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider shadow-sm transition-all ${
+          {/* Availability Status Badge */}
+          <div className={`inline-flex items-center gap-2 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider shadow-sm mb-8 transition-all ${
             theme === "2D"
               ? "border-border bg-white text-foreground"
               : "border-slate-800 bg-slate-900 text-slate-200"
           }`}>
-            <img
-              src={heroPortrait}
-              alt="Sakuni Akela"
-              className={`w-4 h-4 rounded-full object-cover border ${
-                theme === "2D" ? "border-border/80" : "border-slate-700"
-              }`}
-            />
-            Sakuni Akela
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Available for New Project
           </div>
 
-          {/* GitHub Badge */}
-          <a
-            href="https://github.com/Akela2733"
-            target="_blank"
-            rel="noreferrer"
-            className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
-              theme === "2D"
-                ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
-                : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
-            }`}
-          >
-            GitHub <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
-          </a>
+          {/* Call to Action Title */}
+          <h2 className="font-display-blackout text-[clamp(1.8rem,5vw,3.5rem)] leading-none uppercase tracking-wide mb-4">
+            HAVE A PROJECT IN MIND?
+          </h2>
 
-          {/* LinkedIn Badge */}
-          <a
-            href="https://www.linkedin.com/in/sakuni-akela-80500a241"
-            target="_blank"
-            rel="noreferrer"
-            className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
-              theme === "2D"
-                ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
-                : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
-            }`}
-          >
-            LinkedIn <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
-          </a>
+          {/* Description */}
+          <p className="font-sans text-xs md:text-sm text-muted-foreground leading-relaxed max-w-md mx-auto mb-8">
+            Together, we can create something clear and impactful. Let's collaborate to bring our ideas to life in a way that resonates with everyone.
+          </p>
 
-          {/* Email Badge */}
+          {/* Primary Contact CTA Button */}
           <a
             href="mailto:sakuniakela273@gmail.com"
-            className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
+            className={`inline-flex items-center gap-1.5 px-6 py-3.5 font-display-blackout text-xs uppercase tracking-wider rounded-full transition-all shadow-md mb-12 ${
               theme === "2D"
-                ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
-                : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
+                ? "bg-foreground text-background hover:bg-zinc-800"
+                : "bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:opacity-90 shadow-lg shadow-indigo-500/25"
             }`}
           >
-            Email <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
+            Contact Me <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
-        </div>
+
+          {/* Social Badges Row */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {/* Avatar Name Badge */}
+            <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider shadow-sm transition-all ${
+              theme === "2D"
+                ? "border-border bg-white text-foreground"
+                : "border-slate-800 bg-slate-900 text-slate-200"
+            }`}>
+              <img
+                src={heroPortrait}
+                alt="Sakuni Akela"
+                className={`w-4 h-4 rounded-full object-cover border ${
+                  theme === "2D" ? "border-border/80" : "border-slate-700"
+                }`}
+              />
+              Sakuni Akela
+            </div>
+
+            <a
+              href="https://github.com/Akela2733"
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
+                theme === "2D"
+                  ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
+                  : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
+              }`}
+            >
+              GitHub <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/sakuni-akela-80500a241"
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
+                theme === "2D"
+                  ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
+                  : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
+              }`}
+            >
+              LinkedIn <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
+            </a>
+
+            <a
+              href="mailto:sakuniakela273@gmail.com"
+              className={`inline-flex items-center gap-1 px-4 py-2 border rounded-full text-[10px] font-display-blackout uppercase tracking-wider transition-all shadow-sm ${
+                theme === "2D"
+                  ? "border-border bg-white text-foreground hover:border-foreground hover:bg-zinc-50"
+                  : "border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:text-white"
+              }`}
+            >
+              Email <ArrowUpRight className="h-2.5 w-2.5 text-muted-foreground" />
+            </a>
+          </div>
       </div>
     </footer>
   );
 }
+
 
 function Portfolio() {
   const [theme, setTheme] = React.useState<ThemeMode>("2D");
